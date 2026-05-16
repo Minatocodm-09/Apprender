@@ -1,0 +1,166 @@
+/* ============================================
+   Monetag Ads - Non-Intrusive Styling
+   Prevents ads from interfering with user interactions
+   ============================================ */
+
+/* --- Quiz Page Protection --- */
+/* Ensure quiz options, buttons, and modals are always clickable */
+.quiz-container,
+.options-container,
+.option-btn,
+.quiz-wrapper,
+.modal,
+.modal-content {
+    position: relative;
+    z-index: 10;
+}
+
+/* Keep app bar and navigation always accessible */
+.app-bar {
+    z-index: 100 !important;
+}
+
+.side-menu {
+    z-index: 1001 !important;
+}
+
+.menu-overlay {
+    z-index: 1000 !important;
+}
+
+/* Exit modal must always be on top */
+#exitModal {
+    z-index: 9999 !important;
+}
+
+/* Cookie banner above ads */
+.cookie-banner {
+    z-index: 9998 !important;
+}
+
+/* --- Monetag Ad Container Styles --- */
+.monetag-ad-container {
+    width: 100%;
+    max-width: 728px;
+    margin: 24px auto;
+    text-align: center;
+    overflow: hidden;
+    min-height: 50px;
+    border-radius: 8px;
+    background: transparent;
+}
+
+.monetag-ad-container.ad-banner-top {
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+.monetag-ad-container.ad-banner-mid {
+    margin: 32px auto;
+}
+
+.monetag-ad-container.ad-banner-bottom {
+    margin-top: 32px;
+    margin-bottom: 16px;
+}
+
+/* Small label above ad */
+.monetag-ad-label {
+    display: block;
+    text-align: center;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.35);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+/* --- Anti-Overlap Rules --- */
+/* Prevent any third-party ad iframe/div from covering interactive elements */
+body.quiz-active iframe[id*="monetag"],
+body.quiz-active div[id*="monetag"],
+body.quiz-active div[class*="monetag"] {
+    pointer-events: none !important;
+    opacity: 0.3 !important;
+    transition: opacity 0.3s ease;
+}
+
+/* Suppress popups/overlays during active quiz */
+body.quiz-active div[style*="position: fixed"],
+body.quiz-active div[style*="position:fixed"] {
+    /* Allow our own modals but block third-party overlays */
+    z-index: auto !important;
+}
+
+/* Whitelist our own fixed elements */
+body.quiz-active .app-bar,
+body.quiz-active #exitModal,
+body.quiz-active .cookie-banner,
+body.quiz-active .side-menu,
+body.quiz-active .menu-overlay,
+body.quiz-active .toast-container {
+    z-index: revert !important;
+    pointer-events: auto !important;
+    opacity: 1 !important;
+}
+
+/* --- Responsive Ad Sizing --- */
+@media (max-width: 767px) {
+    .monetag-ad-container {
+        max-width: 100%;
+        margin: 16px auto;
+    }
+}
+
+@media (min-width: 768px) {
+    .monetag-ad-container {
+        max-width: 728px;
+    }
+}
+
+/* --- Result Page Ad Slot --- */
+.result-ad-slot {
+    margin: 24px 0;
+    padding: 8px 0;
+}
+
+/* --- Prevent layout shift from ads --- */
+.monetag-ad-container:empty {
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Disable ad interactions on difficulty buttons --- */
+.difficulty-section {
+    position: relative;
+    z-index: 10;
+}
+
+.difficulty-btn {
+    position: relative;
+    z-index: 11;
+}
+
+/* --- Action buttons always on top --- */
+.action-buttons {
+    position: relative;
+    z-index: 10;
+}
+
+.btn {
+    position: relative;
+    z-index: 11;
+}
+
+/* --- Newsletter form protection --- */
+#newsletter-form {
+    position: relative;
+    z-index: 10;
+}
+
+/* --- Social share buttons protection --- */
+.social-share-btn {
+    position: relative;
+    z-index: 10;
+}
